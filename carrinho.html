@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pioneer Sound | Carrinho</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                <img src="img/logop.png" alt="Pioneer Sound">
+            </a>
+
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu">
+
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="contato.html">Contato</a></li>
+
+            </ul>
+
+
+            <div class="nav-icons">
+
+                <a href="login.html">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+
+                <a href="carrinho.html" class="cart-link">
+
+                    <img src="img/carrinho.png" alt="Carrinho">
+
+                    <span id="cartCount">0</span>
+
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="cart-page">
+
+            <div class="cart-title">
+
+                <span class="subtitle">
+                    PIONEER SOUND
+                </span>
+
+                <h1>
+                    Meu Carrinho
+                </h1>
+
+                <p>
+                    Confira seus produtos antes de finalizar sua compra.
+                </p>
+
+            </div>
+
+
+            <div class="cart-content">
+
+                <div id="cartList"></div>
+
+
+                <div class="cart-summary">
+
+                    <h2>
+                        Resumo
+                    </h2>
+
+                    <h3>
+                        Total:
+                        <span id="cartTotal">R$ 0,00</span>
+                    </h3>
+
+                    <button>
+                        Finalizar compra
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <img src="img/logop.png" alt="Pioneer Sound">
+
+                <p>
+                    Som automotivo com tecnologia, potência e qualidade.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Navegação</h3>
+
+                <a href="index.html">Início</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="historia.html">História</a>
+                <a href="contato.html">Contato</a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>Fale Conosco</h3>
+
+                <p>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    (00) 99999-9999
+                </p>
+
+                <p>
+                    <i class="fa-regular fa-envelope"></i>
+                    contato@pioneersound.com
+                </p>
+
+            </div>
+
+
+            <div class="footer-social">
+
+                <h3>Redes Sociais</h3>
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Pioneer Sound. Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <button class="back-button" onclick="goBack()">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+    </button>
+
+
+
+    <script>
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+        function renderCart() {
+
+            const cartList = document.getElementById("cartList");
+
+            const cartTotal = document.getElementById("cartTotal");
+
+
+            cartList.innerHTML = "";
+
+
+            let total = 0;
+
+
+            if (cart.length === 0) {
+
+                cartList.innerHTML = `
+
+<div class="empty-cart">
+
+<h2>
+Seu carrinho está vazio
+</h2>
+
+<a href="produtos.html">
+Ver produtos
+</a>
+
+</div>
+
+`;
+
+                cartTotal.innerHTML = "R$ 0,00";
+
+                updateCount();
+
+                return;
+
+            }
+
+
+
+            cart.forEach((item, index) => {
+
+
+                total += item.price * item.quantity;
+
+
+
+                cartList.innerHTML += `
+
+<div class="cart-item">
+
+
+<img src="${item.image}" alt="${item.name}">
+
+
+<div class="cart-info">
+
+
+<h3>
+${item.name}
+</h3>
+
+
+<p>
+R$ ${item.price.toFixed(2)}
+</p>
+
+
+
+<div class="quantity">
+
+
+<button onclick="changeQuantity(${index},-1)">
+-
+</button>
+
+
+<span>
+${item.quantity}
+</span>
+
+
+<button onclick="changeQuantity(${index},1)">
++
+</button>
+
+
+<button onclick="removeItem(${index})">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+`;
+
+
+
+            });
+
+
+
+            cartTotal.innerHTML =
+                "R$ " + total.toFixed(2);
+
+
+            updateCount();
+
+
+        }
+
+
+
+
+        function changeQuantity(index, value) {
+
+
+            cart[index].quantity += value;
+
+
+            if (cart[index].quantity <= 0) {
+
+                cart.splice(index, 1);
+
+            }
+
+
+            saveCart();
+
+
+        }
+
+
+
+
+        function removeItem(index) {
+
+
+            cart.splice(index, 1);
+
+
+            saveCart();
+
+
+        }
+
+
+
+
+        function saveCart() {
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            renderCart();
+
+
+        }
+
+
+
+
+
+        function updateCount() {
+
+
+            const count = cart.reduce(
+
+                (sum, item) => sum + item.quantity,
+
+                0
+
+            );
+
+
+            const counter =
+                document.getElementById("cartCount");
+
+
+
+            if (counter) {
+
+                counter.innerHTML = count;
+
+            }
+
+
+        }
+
+
+
+
+
+        function goBack() {
+
+            window.history.back();
+
+        }
+
+
+
+        renderCart();
+
+
+    </script>
+
+</body>
+
+</html>

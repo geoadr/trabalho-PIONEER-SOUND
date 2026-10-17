@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pioneer Sound | Login</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+<body>
+<header>
+
+<nav class="navbar">
+
+
+<a href="index.html" class="logo">
+
+<img src="img/logop.png" alt="Pioneer Sound">
+
+</a>
+
+
+
+<a href="index.html" class="back-home">
+
+<i class="fa-solid fa-house"></i>
+
+</a>
+
+
+</nav>
+
+</header>
+<main>
+<section class="login-area">
+<div class="login-box">
+
+<h1 id="formTitle">
+
+Entrar
+
+</h1>
+<form id="authForm">
+<input type="text"
+id="name"
+placeholder="Nome completo"
+class="hidden">
+<input type="email"
+id="email"
+placeholder="E-mail"
+required>
+<input type="password"
+id="password"
+placeholder="Senha"
+required>
+
+<button type="submit">
+
+Entrar
+
+</button>
+
+
+
+
+</form>
+
+
+
+
+
+<p id="message"></p>
+
+
+
+
+
+<a href="#"
+id="toggleForm">
+
+Criar uma conta
+
+</a>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+</main>
+
+
+
+
+
+
+<script>
+const form = document.querySelector("#authForm");
+const title = document.querySelector("#formTitle");
+const toggle = document.querySelector("#toggleForm");
+const nameInput = document.querySelector("#name");
+const message = document.querySelector("#message");
+
+let loginMode = true;
+
+
+toggle.addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    loginMode = !loginMode;
+
+
+    if(loginMode){
+
+        title.innerHTML = "Entrar";
+
+        nameInput.classList.add("hidden");
+
+        toggle.innerHTML = "Criar uma conta";
+
+    }else{
+
+        title.innerHTML = "Criar conta";
+
+        nameInput.classList.remove("hidden");
+
+        toggle.innerHTML = "Já tenho uma conta";
+
+    }
+
+});
+
+
+
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+
+    const email = document.querySelector("#email").value;
+
+    const password = document.querySelector("#password").value;
+
+
+
+    if(loginMode){
+
+
+        const user = JSON.parse(
+            localStorage.getItem("user")
+        );
+
+
+
+        if(
+            user &&
+            user.email === email &&
+            user.password === password
+        ){
+
+
+            localStorage.setItem(
+                "loggedUser",
+                JSON.stringify(user)
+            );
+
+
+            message.innerHTML =
+            "Login realizado com sucesso!";
+
+
+            message.style.color =
+            "#3A8DFF";
+
+
+
+            setTimeout(()=>{
+
+                window.location.href="index.html";
+
+            },1200);
+
+
+
+        }else{
+
+
+            message.innerHTML =
+            "E-mail ou senha incorretos";
+
+
+            message.style.color =
+            "#ff4444";
+
+
+        }
+
+
+
+    }else{
+
+
+        const name =
+        document.querySelector("#name").value;
+
+
+
+        if(name === ""){
+
+
+            message.innerHTML =
+            "Digite seu nome";
+
+
+            message.style.color =
+            "#ff4444";
+
+
+            return;
+
+        }
+
+
+
+        const user = {
+
+
+            name:name,
+
+            email:email,
+
+            password:password
+
+
+        };
+
+
+
+        localStorage.setItem(
+
+            "user",
+
+            JSON.stringify(user)
+
+        );
+
+
+
+        message.innerHTML =
+        "Conta criada com sucesso! Faça login.";
+
+
+
+        message.style.color =
+        "#3A8DFF";
+
+
+
+        loginMode = true;
+
+
+
+        title.innerHTML="Entrar";
+
+
+        nameInput.classList.add("hidden");
+
+
+        toggle.innerHTML="Criar uma conta";
+
+
+        form.reset();
+
+
+    }
+
+
+});
+</script>
+</body>
+</html>

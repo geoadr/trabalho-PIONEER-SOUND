@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneer Sound | Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+
+                <img src="img/logop.png" alt="Pioneer Sound">
+
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="index.html">
+                        Início
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="produtos.html">
+                        Produtos
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="historia.html">
+                        História
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="contato.html">
+                        Contato
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="login.html">
+
+                    <i class="fa-regular fa-user"></i>
+
+                </a>
+                <a href="./carrinho.html" class="cart-button" aria-label="Abrir carrinho">
+
+                    <img src="img/carrinho.png" alt="Carrinho">
+
+                    <span id="cartCount">
+                        0
+                    </span>
+
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="products-banner">
+
+            <div>
+                <span class="subtitle">
+
+                    PIONEER SOUND
+
+                </span>
+
+                <h1>
+                    Produtos
+                </h1>
+
+                <p>
+
+                    Tecnologia, potência e qualidade para
+                    transformar seu sistema de som automotivo.
+
+                </p>
+
+            </div>
+        </section>
+        <section class="products">
+
+            <h2>
+
+                Todos os produtos
+
+            </h2>
+
+            <div class="products-grid">
+                <article class="product-card">
+
+                    <img src="img/multimidia.png" alt="Central multimídia">
+
+                    <h3>
+
+                        Central Multimídia
+
+                    </h3>
+                    <p>
+
+                        Tela, conectividade e tecnologia
+                        para seu veículo.
+
+                    </p>
+
+                    <strong>
+
+                        R$ 899,90
+
+                    </strong>
+
+                    <button onclick="addCart('Central Multimídia',899.90,'img/multimidia.png')">
+                        Adicionar ao carrinho
+                    </button>
+                </article>
+                <article class="product-card">
+
+
+                    <img src="img/subwoofer.png" alt="Subwoofer">
+
+
+                    <h3>
+
+                        Subwoofer
+
+                    </h3>
+                    <p>
+
+                        Graves potentes para uma experiência
+                        mais imersiva.
+
+                    </p>
+
+                    <strong>
+
+                        R$ 499,90
+
+                    </strong>
+                    <button onclick="addCart('Subwoofer',499.90,'img/subwoofer.png')">
+                        Adicionar ao carrinho
+                    </button>
+                </article>
+                <article class="product-card">
+
+
+                    <img src="img/altofalante.png" alt="Alto falante">
+                    <h3>
+
+                        Alto-falantes
+
+                    </h3>
+
+                    <p>
+
+                        Qualidade sonora e potência
+                        para todos os momentos.
+
+                    </p>
+
+                    <strong>
+
+                        R$ 299,90
+
+                    </strong>
+                    <button onclick="addCart('Alto-falantes',299.90,'img/altofalante.png')">
+                        Adicionar ao carrinho
+                    </button>
+                </article>
+                <article class="product-card">
+
+                    <img src="img/modulo.png" alt="Módulo amplificador">
+                    <h3>
+
+                        Módulo Amplificador
+
+                    </h3>
+                    <p>
+
+                        Mais potência e controle
+                        para seu sistema.
+
+                    </p>
+                    <strong>
+
+                        R$ 699,90
+
+                    </strong>
+                    <button onclick="addCart('Módulo Amplificador',699.90,'img/modulo.png')">
+                        Adicionar ao carrinho
+                    </button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <img src="img/logop.png" alt="Pioneer Sound">
+
+                <p>
+                    Som automotivo com tecnologia,
+                    potência e qualidade.
+                </p>
+            </div>
+            <div class="footer-links">
+                <h3>
+
+                    Navegação
+
+                </h3>
+                <a href="index.html">
+                    Início
+                </a>
+                <a href="produtos.html">
+                    Produtos
+                </a>
+                <a href="historia.html">
+                    História
+                </a>
+
+                <a href="contato.html">
+                    Contato
+                </a>
+
+            </div>
+
+            <div class="footer-contact">
+
+
+                <h3>
+
+                    Fale Conosco
+
+                </h3>
+
+
+                <p>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    (00) 99999-9999
+                </p>
+
+
+                <p>
+                    <i class="fa-regular fa-envelope"></i>
+                    contato@pioneersound.com
+                </p>
+
+
+            </div>
+
+            <div class="footer-social">
+
+                <h3>
+
+                    Redes Sociais
+
+                </h3>
+
+
+                <div class="social-icons">
+
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+
+
+                    <a href="#">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Pioneer Sound. Todos os direitos reservados.
+            </p>
+
+        </div>
+    </footer>
+    <button class="back-button" onclick="goBack()">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+    </button>
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+        function addCart(name, price, image) {
+
+            console.log("Produto:", name);
+
+
+            let product = cart.find(item => item.name === name);
+
+
+            if (product) {
+
+                product.quantity += 1;
+
+            } else {
+
+                cart.push({
+
+                    name: name,
+
+                    price: Number(price),
+
+                    image: image,
+
+                    quantity: 1
+
+                });
+
+            }
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            alert(name + " adicionado ao carrinho");
+
+
+            updateCartCount();
+
+
+        }
+
+
+
+        function updateCartCount() {
+
+
+            let total = 0;
+
+
+            cart.forEach(item => {
+
+                total += item.quantity;
+
+            });
+
+
+            let counter = document.getElementById("cartCount");
+
+
+            if (counter) {
+
+                counter.innerHTML = total;
+
+            }
+
+
+        }
+
+
+
+        updateCartCount();
+
+
+    </script>
+</body>
+
+</html>
